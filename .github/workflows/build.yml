@@ -7,8 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  POSTGRESQL_VERSION: 13.1
-  DB_DATABASE: vertragsdb
+  DB_DATABASE: carident
   DB_USER: root
   DB_PASSWORD: root
   JAVA_VERSION: 1.16

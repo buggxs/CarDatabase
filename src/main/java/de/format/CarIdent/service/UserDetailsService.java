@@ -1,6 +1,6 @@
 package de.format.CarIdent.service;
 
-import de.format.CarIdent.database.UserRepository;
+import de.format.CarIdent.database.auth.UserRepository;
 import de.format.CarIdent.exception.UserNotFoundException;
 import de.format.CarIdent.model.auth.User;
 import lombok.AllArgsConstructor;

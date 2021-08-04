@@ -1,7 +1,7 @@
 package de.format.CarIdent.controller.auth;
 
-import de.format.CarIdent.database.RoleRepository;
-import de.format.CarIdent.database.UserRepository;
+import de.format.CarIdent.database.auth.RoleRepository;
+import de.format.CarIdent.database.auth.UserRepository;
 import de.format.CarIdent.exception.ContractDatabaseException;
 import de.format.CarIdent.model.auth.Role;
 import de.format.CarIdent.model.auth.User;
