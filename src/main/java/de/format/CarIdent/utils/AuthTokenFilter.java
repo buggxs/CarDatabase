@@ -1,6 +1,6 @@
 package de.format.CarIdent.utils;
 
-import de.format.CarIdent.service.UserDetailsService;
+import de.format.CarIdent.user.UserDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

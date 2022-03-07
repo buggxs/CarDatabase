@@ -1,18 +1,24 @@
 package de.format.CarIdent.controller.auth;
 
-import de.format.CarIdent.database.auth.RoleRepository;
-import de.format.CarIdent.database.auth.UserRepository;
+import de.format.CarIdent.role.RoleRepository;
+import de.format.CarIdent.user.UserRepository;
 import de.format.CarIdent.exception.ContractDatabaseException;
-import de.format.CarIdent.model.auth.Role;
-import de.format.CarIdent.model.auth.User;
+import de.format.CarIdent.role.Role;
+import de.format.CarIdent.user.User;
 import de.format.CarIdent.model.requests.AuthenticationRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api/v1/register")
@@ -24,7 +30,7 @@ public class RegisterController {
     private final UserRepository userRepository;
 
     @PostMapping
-    public ResponseEntity<?> index(@RequestBody AuthenticationRequest authenticationRequest)
+    public ResponseEntity<?> index(@Valid @RequestBody AuthenticationRequest authenticationRequest)
     {
         Role role = roleRepository
                 .findById(1L)
@@ -43,5 +49,4 @@ public class RegisterController {
         userRepository.save(user);
         return ResponseEntity.ok("User successfully registered");
     }
-
 }

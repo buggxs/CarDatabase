@@ -1,6 +1,7 @@
-package de.format.CarIdent.model.auth;
+package de.format.CarIdent.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.format.CarIdent.role.Role;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,6 +39,10 @@ public class User implements UserDetails {
 
     @OneToOne(targetEntity = Role.class, cascade = CascadeType.MERGE)
     private Role role;
+
+    public User() {
+
+    }
 
     @Override
     @JsonIgnore

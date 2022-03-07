@@ -1,6 +1,5 @@
-package de.format.CarIdent.database.auth;
+package de.format.CarIdent.user;
 
-import de.format.CarIdent.model.auth.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

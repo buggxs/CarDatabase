@@ -1,6 +1,6 @@
-package de.format.CarIdent.database.auth;
+package de.format.CarIdent.permission;
 
-import de.format.CarIdent.model.auth.Permission;
+import de.format.CarIdent.permission.Permission;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PermissionRepository extends JpaRepository<Permission, Long> {

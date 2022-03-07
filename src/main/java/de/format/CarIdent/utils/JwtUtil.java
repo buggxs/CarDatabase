@@ -1,6 +1,6 @@
 package de.format.CarIdent.utils;
 
-import de.format.CarIdent.model.auth.User;
+import de.format.CarIdent.user.User;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

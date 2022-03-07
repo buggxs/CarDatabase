@@ -1,6 +1,6 @@
 package de.format.CarIdent.config;
 
-import de.format.CarIdent.service.UserDetailsService;
+import de.format.CarIdent.user.UserDetailsService;
 import de.format.CarIdent.utils.AuthEntryPointJwt;
 import de.format.CarIdent.utils.AuthTokenFilter;
 import lombok.AllArgsConstructor;

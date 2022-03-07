@@ -1,6 +1,6 @@
 package de.format.CarIdent.filter;
 
-import de.format.CarIdent.service.UserDetailsService;
+import de.format.CarIdent.user.UserDetailsService;
 import de.format.CarIdent.utils.JwtUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

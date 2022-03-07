@@ -1,5 +1,6 @@
-package de.format.CarIdent.model.auth;
+package de.format.CarIdent.role;
 
+import de.format.CarIdent.permission.Permission;
 import lombok.Data;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

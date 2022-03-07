@@ -1,4 +1,4 @@
-package de.format.CarIdent.model.auth;
+package de.format.CarIdent.permission;
 
 import lombok.Data;
 

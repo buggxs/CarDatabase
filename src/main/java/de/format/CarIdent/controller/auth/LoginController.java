@@ -1,6 +1,6 @@
 package de.format.CarIdent.controller.auth;
 
-import de.format.CarIdent.model.auth.User;
+import de.format.CarIdent.user.User;
 import de.format.CarIdent.model.requests.AuthenticationRequest;
 import de.format.CarIdent.model.response.AuthenticationResponse;
 import de.format.CarIdent.utils.JwtUtil;
@@ -27,8 +27,8 @@ public class LoginController {
     private final JwtUtil jwtUtil;
 
 
-    @RequestMapping(value = {"/authenticate"}, method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
