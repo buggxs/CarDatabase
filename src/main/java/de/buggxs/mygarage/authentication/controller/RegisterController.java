@@ -32,16 +32,9 @@ public class RegisterController {
                 .orElseThrow(() -> new ContractDatabaseException("Es konnte keine passende Rolle gefunden werden."));
 
         User user = new User(
-                null,
                 authenticationRequest.getUsername(),
                 "test@gmail.com",
-                passwordEncoder.encode(authenticationRequest.getPassword()),
-                passwordEncoder.encode(authenticationRequest.getPassword()),
-                false,
-                false,
-                false,
-                true,
-                role
+                passwordEncoder.encode(authenticationRequest.getPassword())
         );
         userRepository.save(user);
         return ResponseEntity.ok("User successfully registered");

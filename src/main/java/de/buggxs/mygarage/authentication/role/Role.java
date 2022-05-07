@@ -1,10 +1,7 @@
 package de.buggxs.mygarage.authentication.role;
 
 import de.buggxs.mygarage.authentication.permission.Permission;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -19,12 +16,14 @@ import java.util.stream.Collectors;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@NoArgsConstructor
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
     private String name;
 
     @ManyToMany(
