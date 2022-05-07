@@ -2,10 +2,7 @@ package de.buggxs.mygarage.authentication.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.buggxs.mygarage.authentication.role.Role;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,16 +17,21 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
     private String username;
 
+    @NonNull
     private String email;
 
+    @NonNull
     @JsonIgnore
     private String password;
 
@@ -37,16 +39,17 @@ public class User implements UserDetails {
     @JsonIgnore
     private String passwordConfirm;
 
-    private boolean isAccountNonExpired;
+    private boolean isAccountNonExpired = true;
 
-    private boolean isAccountNonLocked;
+    private boolean isAccountNonLocked = true;
 
-    private boolean isCredentialsNonExpired;
+    private boolean isCredentialsNonExpired = true;
 
-    private boolean isEnabled;
+    private boolean isEnabled = true;
 
     @OneToOne(targetEntity = Role.class, cascade = CascadeType.MERGE)
     private Role role;
+
 
     @Override
     @JsonIgnore
