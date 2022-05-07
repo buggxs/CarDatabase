@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  DB_DATABASE: carident
+  DB_DATABASE: my_garage
   DB_USER: root
   DB_PASSWORD: root
   JAVA_VERSION: 1.16
