@@ -34,7 +34,7 @@ public class User implements UserDetails {
     @NonNull
     @JsonIgnore
     private String password;
-    
+
     @Transient
     @JsonIgnore
     private String passwordConfirm;
@@ -48,7 +48,7 @@ public class User implements UserDetails {
     private boolean isEnabled = true;
 
     @OneToOne(targetEntity = Role.class, cascade = CascadeType.MERGE)
-    private Role role = new Role();
+    private Role role;
 
 
     @Override
