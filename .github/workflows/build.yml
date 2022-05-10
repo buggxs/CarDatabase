@@ -8,8 +8,8 @@ on:
 
 env:
   DB_DATABASE: my_garage
-  DB_USER: root
-  DB_PASSWORD: root
+  DB_USER: buggxs
+  DB_PASSWORD: Hiwiegehts9
   JAVA_VERSION: 1.16
 
 jobs:
@@ -24,6 +24,6 @@ jobs:
       - uses: actions/setup-java@v1.4.3
         with:
           java-version: ${{ env.JAVA_VERSION }}
-      - name: Maven Clean Package
+      - name: Maven Clean Package and run tests
         run: |
           chmod +x mvnw && ./mvnw --no-transfer-progress clean package -P prod
