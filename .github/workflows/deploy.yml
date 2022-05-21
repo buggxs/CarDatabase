@@ -7,10 +7,9 @@ on:
   workflow_dispatch:
 
 env:
-  # Postgres
   DB_DATABASE: my_garage
-  DB_USER: buggxs
-  DB_PASSWORD: Hiwiegehts9
+  DB_USER: root
+  DB_PASSWORD: root
   # Java
   JAVA_VERSION: 1.16
   # DockerHub
