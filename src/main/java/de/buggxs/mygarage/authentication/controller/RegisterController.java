@@ -37,6 +37,6 @@ public class RegisterController {
                 passwordEncoder.encode(authenticationRequest.getPassword())
         );
         userRepository.save(user);
-        return ResponseEntity.ok("User successfully registered!");
+        return ResponseEntity.ok("Awesome! User successfully registered!");
     }
 }
