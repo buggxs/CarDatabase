@@ -15,7 +15,7 @@ env:
   # DockerHub
   DOCKER_HUB_USERNAME: digitalstreich
   # AWS & Elastic Bean Stalk
-  AWS_REGION: eu-west-1
+  AWS_REGION: eu-central-1
   EB_ENVIRONMENT_NAME: Mygarage-env
   EB_APPLICATION_NAME: mygarage
   EB_DEPLOYMENT_PACKAGE: elasticbeanstalk/docker-compose.yml
