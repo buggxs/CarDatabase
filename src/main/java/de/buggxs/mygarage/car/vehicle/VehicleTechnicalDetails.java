@@ -1,5 +1,6 @@
 package de.buggxs.mygarage.car.vehicle;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,7 +19,7 @@ public class VehicleTechnicalDetails {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "vehicle_id")
+    @Column(name = "vehicle_id", insertable = false, updatable = false)
     private Long vehicleId;
 
     @Column(name = "engine_type")
@@ -83,4 +84,12 @@ public class VehicleTechnicalDetails {
 
     @Column(name = "max_torque_rpm")
     private String maxTorqueRpm;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vehicle_id", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_vehicles_details_technically_vehicles"))
+    @JsonBackReference
+    @ToString.Exclude
+    private Vehicle vehicle;
+
 }

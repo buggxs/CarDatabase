@@ -1,5 +1,6 @@
 package de.buggxs.mygarage.car.vehicle;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,7 +19,7 @@ public class VehicleDetails {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "vehicle_id")
+    @Column(name = "vehicle_id", insertable = false, updatable = false)
     private Long vehicleId;
 
     @Column(name = "type")
@@ -47,4 +48,11 @@ public class VehicleDetails {
 
     @Column(name = "base_price")
     private String basePrice;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vehicle_id", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_vehicle_details_vehicle"))
+    @JsonBackReference
+    @ToString.Exclude
+    private Vehicle vehicle;
 }
