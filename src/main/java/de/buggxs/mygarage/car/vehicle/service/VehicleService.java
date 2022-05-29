@@ -30,6 +30,7 @@ public class VehicleService {
     public List<Vehicle> getVehicleByHsnTsn(Optional<String> hsn, Optional<String> tsn) {
         String hsnKey = hsn.orElseThrow(() -> new ContractDatabaseException(""));
         String tsnKey = tsn.orElseThrow(() -> new ContractDatabaseException(""));
+        log.info("Fetching vehicle by tsn {} and hsn {}", hsnKey, tsnKey);
         return vehicleRepository.getAllVehiclesByHsnTsn(hsnKey, tsnKey);
     }
 
