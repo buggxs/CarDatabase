@@ -9,10 +9,10 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@Table(name = "brands")
+@Table(name = "model_series_generation")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Brand {
+public class ModelSeriesGeneration {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +25,8 @@ public class Brand {
     @Column(name = "url")
     @JsonIgnore
     private String url;
+
+    @ManyToOne
+    @JoinColumn(name = "model_series_id", nullable = false)
+    private ModelSeries modelSeries;
 }

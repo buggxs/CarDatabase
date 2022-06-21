@@ -10,7 +10,7 @@
     </parent>
     <groupId>de.buggxs</groupId>
     <artifactId>mygarage</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <name>MyGarage</name>
     <description>App to Store Cars online</description>
     <properties>

@@ -16,8 +16,8 @@ env:
   DOCKER_HUB_USERNAME: digitalstreich
   # AWS & Elastic Bean Stalk
   AWS_REGION: eu-central-1
-  EB_ENVIRONMENT_NAME: Mygarage-env
-  EB_APPLICATION_NAME: mygarage
+  EB_ENVIRONMENT_NAME: Mygarageapi-env
+  EB_APPLICATION_NAME: my-garage-api
   EB_DEPLOYMENT_PACKAGE: elasticbeanstalk/docker-compose.yml
 
 jobs:
@@ -64,7 +64,7 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-          text: ':white_check_mark: pushed amigoscode/springboot-react-fullstack:${{steps.build-number.outputs.BUILD_NUMBER}} to docker hub... https://hub.docker.com/repository/docker/amigoscode/springboot-react-fullstack'
+          text: ':white_check_mark: pushed digitalstreich/mygarage-backend:${{steps.build-number.outputs.BUILD_NUMBER}} to docker hub... https://hub.docker.com/repository/docker/digitalstreich/mygarage-backend'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Update and commit app version in docker-compose.yaml
@@ -102,7 +102,7 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-          text: ':tada: :arrow_right: http://springbootreactfullstack-env.eba-3imjbkem.eu-west-1.elasticbeanstalk.com'
+          text: ':tada: :arrow_right: Mygarageapi-env.eba-xevdwjbw.eu-central-1.elasticbeanstalk.com'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()

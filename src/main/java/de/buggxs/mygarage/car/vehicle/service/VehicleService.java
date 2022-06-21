@@ -34,4 +34,8 @@ public class VehicleService {
         return vehicleRepository.getAllVehiclesByHsnTsn(hsnKey, tsnKey);
     }
 
+    public Vehicle getVehicleById(Long id) {
+        return vehicleRepository.findById(id).orElseThrow(() -> new ContractDatabaseException("No car found with this id."));
+    }
+
 }

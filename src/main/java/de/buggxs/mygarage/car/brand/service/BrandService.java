@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -18,6 +19,11 @@ public class BrandService {
     public List<Brand> getAllBrands() {
         log.info("Fetching all brands");
         return brandRepository.findAll();
+    }
+
+    public List<Brand> getBrandsByName(Optional<String> name) {
+        log.info("Fetching brands containing string {}", name);
+        return brandRepository.findBrandByName(name.orElse(""));
     }
 
 }
