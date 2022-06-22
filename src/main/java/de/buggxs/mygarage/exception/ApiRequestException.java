@@ -4,9 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class ContractDatabaseException extends RuntimeException {
+public class ApiRequestException extends RuntimeException {
 
-    public ContractDatabaseException(String message) {
+    public ApiRequestException(String message) {
         super(message);
     }
+
 }

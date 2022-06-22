@@ -25,13 +25,14 @@ public class VehicleApiController {
         return vehicleService.getAllVehicles(page);
     }
 
-    @GetMapping(value = "/find")
+    @GetMapping(value = "/hsn/{hsn}/tsn/{tsn}")
     public List<Vehicle> getVehicleByHsnTsn(
-            @RequestParam(value = "hsn", required = false) Optional<String> hsn,
-            @RequestParam(value = "tsn", required = false) Optional<String> tsn
+            @PathVariable(value = "hsn", required = false) Optional<String> hsn,
+            @PathVariable(value = "tsn", required = false) Optional<String> tsn
     ) {
         return vehicleService.getVehicleByHsnTsn(hsn, tsn);
     }
+
 
     @GetMapping(value = "/{id}")
     public Vehicle getVehicleById(@PathVariable("id") Long id) {

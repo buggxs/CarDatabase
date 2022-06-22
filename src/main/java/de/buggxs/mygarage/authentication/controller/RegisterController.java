@@ -5,7 +5,7 @@ import de.buggxs.mygarage.authentication.role.Role;
 import de.buggxs.mygarage.authentication.role.RoleRepository;
 import de.buggxs.mygarage.authentication.user.User;
 import de.buggxs.mygarage.authentication.user.UserRepository;
-import de.buggxs.mygarage.exception.ContractDatabaseException;
+import de.buggxs.mygarage.exception.ApiRequestException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,7 +29,7 @@ public class RegisterController {
     public ResponseEntity<?> index(@Valid @RequestBody AuthenticationRequest authenticationRequest) {
         Role role = roleRepository
                 .findById(1L)
-                .orElseThrow(() -> new ContractDatabaseException("Es konnte keine passende Rolle gefunden werden."));
+                .orElseThrow(() -> new ApiRequestException("Es konnte keine passende Rolle gefunden werden."));
 
         User user = new User(
                 authenticationRequest.getUsername(),

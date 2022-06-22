@@ -2,7 +2,7 @@ package de.buggxs.mygarage.car.vehicle.service;
 
 import de.buggxs.mygarage.car.vehicle.Vehicle;
 import de.buggxs.mygarage.car.vehicle.db.VehicleRepository;
-import de.buggxs.mygarage.exception.ContractDatabaseException;
+import de.buggxs.mygarage.exception.ApiRequestException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -28,14 +28,14 @@ public class VehicleService {
     }
 
     public List<Vehicle> getVehicleByHsnTsn(Optional<String> hsn, Optional<String> tsn) {
-        String hsnKey = hsn.orElseThrow(() -> new ContractDatabaseException(""));
-        String tsnKey = tsn.orElseThrow(() -> new ContractDatabaseException(""));
+        String hsnKey = hsn.orElseThrow(() -> new ApiRequestException("No HSN key set."));
+        String tsnKey = tsn.orElseThrow(() -> new ApiRequestException("NO TSN key set."));
         log.info("Fetching vehicle by tsn {} and hsn {}", hsnKey, tsnKey);
         return vehicleRepository.getAllVehiclesByHsnTsn(hsnKey, tsnKey);
     }
 
     public Vehicle getVehicleById(Long id) {
-        return vehicleRepository.findById(id).orElseThrow(() -> new ContractDatabaseException("No car found with this id."));
+        return vehicleRepository.findById(id).orElseThrow(() -> new ApiRequestException("No car with this id."));
     }
 
 }
