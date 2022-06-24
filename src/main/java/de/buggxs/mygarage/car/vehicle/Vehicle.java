@@ -24,6 +24,9 @@ public class Vehicle {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "model")
+    private String model;
+
     @Column(name = "type")
     private String type;
 

@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -26,11 +25,22 @@ public class VehicleApiController {
     }
 
     @GetMapping(value = "/hsn/{hsn}/tsn/{tsn}")
-    public List<Vehicle> getVehicleByHsnTsn(
-            @PathVariable(value = "hsn", required = false) Optional<String> hsn,
-            @PathVariable(value = "tsn", required = false) Optional<String> tsn
+    public Page<Vehicle> getVehicleByHsnTsn(
+            @PathVariable(value = "hsn") Optional<String> hsn,
+            @PathVariable(value = "tsn") Optional<String> tsn,
+            @RequestParam(value = "page", required = false) Optional<Integer> page
     ) {
-        return vehicleService.getVehicleByHsnTsn(hsn, tsn);
+        return vehicleService.getVehicleByHsnTsn(hsn, tsn, page);
+    }
+
+
+    @GetMapping(value = "/find")
+    public Page<Vehicle> getVehiclesByName(
+            @RequestParam(value = "name", required = false) Optional<String> name,
+            @RequestParam(value = "page", required = false) Optional<Integer> page
+
+    ) {
+        return vehicleService.getAllVehiclesByName(name, page);
     }
 
 

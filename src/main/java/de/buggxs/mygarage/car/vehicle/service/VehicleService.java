@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,15 +26,23 @@ public class VehicleService {
         return vehicleRepository.findAll(firstPageWithTwoElements);
     }
 
-    public List<Vehicle> getVehicleByHsnTsn(Optional<String> hsn, Optional<String> tsn) {
+    public Page<Vehicle> getVehicleByHsnTsn(Optional<String> hsn, Optional<String> tsn, Optional<Integer> page) {
+        int pageNumber = page.orElse(0);
         String hsnKey = hsn.orElseThrow(() -> new ApiRequestException("No HSN key set."));
         String tsnKey = tsn.orElseThrow(() -> new ApiRequestException("NO TSN key set."));
         log.info("Fetching vehicle by tsn {} and hsn {}", hsnKey, tsnKey);
-        return vehicleRepository.getAllVehiclesByHsnTsn(hsnKey, tsnKey);
+        Pageable pageRequest = PageRequest.of(pageNumber, 20);
+        return vehicleRepository.getAllVehiclesByHsnTsn(hsnKey, tsnKey, pageRequest);
     }
 
     public Vehicle getVehicleById(Long id) {
         return vehicleRepository.findById(id).orElseThrow(() -> new ApiRequestException("No car with this id."));
+    }
+
+    public Page<Vehicle> getAllVehiclesByName(Optional<String> name, Optional<Integer> page) {
+        int pageNumber = page.orElse(0);
+        Pageable pageRequest = PageRequest.of(pageNumber, 20);
+        return vehicleRepository.getAllVehiclesByName(name.orElseThrow(() -> new ApiRequestException("No name variable found")), pageRequest);
     }
 
 }
