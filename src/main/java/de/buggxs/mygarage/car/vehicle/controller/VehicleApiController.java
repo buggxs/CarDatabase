@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -25,13 +24,25 @@ public class VehicleApiController {
         return vehicleService.getAllVehicles(page);
     }
 
-    @GetMapping(value = "/find")
-    public List<Vehicle> getVehicleByHsnTsn(
-            @RequestParam(value = "hsn", required = false) Optional<String> hsn,
-            @RequestParam(value = "tsn", required = false) Optional<String> tsn
+    @GetMapping(value = "/hsn/{hsn}/tsn/{tsn}")
+    public Page<Vehicle> getVehicleByHsnTsn(
+            @PathVariable(value = "hsn") Optional<String> hsn,
+            @PathVariable(value = "tsn") Optional<String> tsn,
+            @RequestParam(value = "page", required = false) Optional<Integer> page
     ) {
-        return vehicleService.getVehicleByHsnTsn(hsn, tsn);
+        return vehicleService.getVehicleByHsnTsn(hsn, tsn, page);
     }
+
+
+    @GetMapping(value = "/find")
+    public Page<Vehicle> getVehiclesByName(
+            @RequestParam(value = "name", required = false) Optional<String> name,
+            @RequestParam(value = "page", required = false) Optional<Integer> page
+
+    ) {
+        return vehicleService.getAllVehiclesByName(name, page);
+    }
+
 
     @GetMapping(value = "/{id}")
     public Vehicle getVehicleById(@PathVariable("id") Long id) {
