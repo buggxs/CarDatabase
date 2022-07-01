@@ -1,6 +1,7 @@
 package de.buggxs.mygarage.car.vehicle.service;
 
 import de.buggxs.mygarage.car.vehicle.Vehicle;
+import de.buggxs.mygarage.car.vehicle.VehicleShortDetailed;
 import de.buggxs.mygarage.car.vehicle.db.VehicleRepository;
 import de.buggxs.mygarage.exception.ApiRequestException;
 import lombok.AllArgsConstructor;
@@ -19,11 +20,11 @@ public class VehicleService {
 
     private final VehicleRepository vehicleRepository;
 
-    public Page<Vehicle> getAllVehicles(Optional<Integer> page) {
+    public Page<VehicleShortDetailed> getAllVehicles(Optional<Integer> page) {
         int pageNumber = page.orElse(0);
         log.info("Showing vehicles page number {}", pageNumber);
         Pageable firstPageWithTwoElements = PageRequest.of(pageNumber, 20);
-        return vehicleRepository.findAll(firstPageWithTwoElements);
+        return vehicleRepository.findAll(firstPageWithTwoElements).map(Vehicle::vehicleShortDetailed);
     }
 
     public Page<Vehicle> getVehicleByHsnTsn(Optional<String> hsn, Optional<String> tsn, Optional<Integer> page) {
@@ -39,10 +40,10 @@ public class VehicleService {
         return vehicleRepository.findById(id).orElseThrow(() -> new ApiRequestException("No car with this id."));
     }
 
-    public Page<Vehicle> getAllVehiclesByName(Optional<String> name, Optional<Integer> page) {
+    public Page<VehicleShortDetailed> getAllVehiclesByName(Optional<String> name, Optional<Integer> page) {
         int pageNumber = page.orElse(0);
         Pageable pageRequest = PageRequest.of(pageNumber, 20);
-        return vehicleRepository.getAllVehiclesByName(name.orElseThrow(() -> new ApiRequestException("No name variable found")), pageRequest);
+        return vehicleRepository.getAllVehiclesByName(name.orElseThrow(() -> new ApiRequestException("No name variable found")), pageRequest).map(Vehicle::vehicleShortDetailed);
     }
 
 }

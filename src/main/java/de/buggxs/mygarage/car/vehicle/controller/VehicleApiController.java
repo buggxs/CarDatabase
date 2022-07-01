@@ -1,6 +1,7 @@
 package de.buggxs.mygarage.car.vehicle.controller;
 
 import de.buggxs.mygarage.car.vehicle.Vehicle;
+import de.buggxs.mygarage.car.vehicle.VehicleShortDetailed;
 import de.buggxs.mygarage.car.vehicle.service.VehicleService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,7 @@ public class VehicleApiController {
     private final VehicleService vehicleService;
 
     @GetMapping
-    public Page<Vehicle> showAllVehicles(
+    public Page<VehicleShortDetailed> showAllVehicles(
             @RequestParam(value = "page", required = false) Optional<Integer> page
     ) {
         return vehicleService.getAllVehicles(page);
@@ -35,7 +36,7 @@ public class VehicleApiController {
 
 
     @GetMapping(value = "/find")
-    public Page<Vehicle> getVehiclesByName(
+    public Page<VehicleShortDetailed> getVehiclesByName(
             @RequestParam(value = "name", required = false) Optional<String> name,
             @RequestParam(value = "page", required = false) Optional<Integer> page
 

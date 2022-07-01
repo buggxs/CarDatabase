@@ -43,4 +43,14 @@ public class Vehicle {
     @ToString.Exclude
     @JsonManagedReference
     private Set<VehicleTechnicalDetails> vehicleTechnicalDetails;
+
+    @JsonIgnore
+    public VehicleShortDetailed vehicleShortDetailed() {
+        if (!this.vehicleDetails.isEmpty()) {
+            VehicleDetails vehicleDetailsTemp = this.vehicleDetails.iterator().next();
+            return new VehicleShortDetailed(this.id, this.name, this.model, this.type,
+                    vehicleDetailsTemp.getModelStart(), vehicleDetailsTemp.getModelEnd());
+        }
+        return new VehicleShortDetailed(this.name, this.model, this.type);
+    }
 }
