@@ -50,4 +50,10 @@ public class VehicleApiController {
         return vehicleService.getVehicleById(id);
     }
 
+    @GetMapping(value = "/find/year")
+    public Page<VehicleShortDetailed> getVehiclesByType(@RequestParam(value = "type", required = false) Optional<String> type) {
+        // TODO: implement
+        return null;
+    }
+
 }
