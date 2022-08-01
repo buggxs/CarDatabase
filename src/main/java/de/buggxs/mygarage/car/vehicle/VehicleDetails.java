@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -55,4 +57,10 @@ public class VehicleDetails {
     @JsonBackReference
     @ToString.Exclude
     private Vehicle vehicle;
+
+    public String getModelEnd() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/y");
+        LocalDateTime now = LocalDateTime.now();
+        return (modelEnd != null) ? modelEnd : dtf.format(now);
+    }
 }

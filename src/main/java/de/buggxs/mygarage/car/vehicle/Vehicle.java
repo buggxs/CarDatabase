@@ -36,7 +36,7 @@ public class Vehicle {
     @JsonIgnore
     private String url;
 
-    @Column(name = "model_series_generation_id")
+    @Column(name = "model_series_generation_id", updatable = false, insertable = false)
     private Long modelSeriesGenerationId;
 
     @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY)
@@ -65,4 +65,5 @@ public class Vehicle {
         }
         return new VehicleShortDetailed(this.name, this.model, this.type);
     }
+    
 }
