@@ -24,4 +24,21 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
             nativeQuery = true)
     Page<Vehicle> getAllVehiclesByName(@Param("name") String name, Pageable pageable);
 
+    @Query(value = "SELECT vehicles.* " +
+            "FROM vehicles " +
+            "INNER JOIN vehicles_details ON vehicles.id = vehicles_details.vehicle_id " +
+            "INNER JOIN model_series_generation ON vehicles.model_series_generation_id = model_series_generation.id " +
+            "WHERE (STR_TO_DATE(:date, '%m/%y') BETWEEN STR_TO_DATE(vehicles_details.model_start, '%m/%y') " +
+            "AND STR_TO_DATE(vehicles_details.model_end, '%m/%y')) " +
+            "AND model_series_generation.name = :name",
+            countQuery = "SELECT count(vehicles.id) " +
+                    "FROM vehicles " +
+                    "INNER JOIN vehicles_details ON vehicles.id = vehicles_details.vehicle_id " +
+                    "INNER JOIN model_series_generation ON vehicles.model_series_generation_id = model_series_generation.id " +
+                    "WHERE (STR_TO_DATE(:date, '%m/%y') BETWEEN STR_TO_DATE(vehicles_details.model_start, '%m/%y') " +
+                    "AND STR_TO_DATE(vehicles_details.model_end, '%m/%y')) " +
+                    "AND model_series_generation.name = :name",
+            nativeQuery = true)
+    Page<Vehicle> getAllVehiclesByModelYearAndName(@Param("date") String date, @Param("name") String name, Pageable pageable);
+
 }
