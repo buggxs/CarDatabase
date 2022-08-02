@@ -1,6 +1,7 @@
 package de.buggxs.mygarage.car.vehicle;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,9 +20,11 @@ public class VehicleDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonIgnore
     private Long id;
 
     @Column(name = "vehicle_id", insertable = false, updatable = false)
+    @JsonIgnore
     private Long vehicleId;
 
     @Column(name = "type")
@@ -59,7 +62,7 @@ public class VehicleDetails {
     private Vehicle vehicle;
 
     public String getModelEnd() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("M/y");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/y");
         LocalDateTime now = LocalDateTime.now();
         return (modelEnd != null) ? modelEnd : dtf.format(now);
     }

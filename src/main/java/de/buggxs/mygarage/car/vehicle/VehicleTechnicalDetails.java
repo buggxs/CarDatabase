@@ -1,6 +1,7 @@
 package de.buggxs.mygarage.car.vehicle;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,9 +18,11 @@ public class VehicleTechnicalDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonIgnore
     private Long id;
 
     @Column(name = "vehicle_id", insertable = false, updatable = false)
+    @JsonIgnore
     private Long vehicleId;
 
     @Column(name = "engine_type")
