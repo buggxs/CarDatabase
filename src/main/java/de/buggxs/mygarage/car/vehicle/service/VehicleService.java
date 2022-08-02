@@ -46,10 +46,10 @@ public class VehicleService {
         return vehicleRepository.getAllVehiclesByName(name.orElseThrow(() -> new ApiRequestException("No name variable found")), pageRequest).map(Vehicle::vehicleShortDetailed);
     }
 
-    public Page<Vehicle> getAllVehiclesByModelYearAndName(String date, String name, Optional<Integer> page) {
+    public Page<VehicleShortDetailed> getAllVehiclesByModelAndName(String name, String maker, Optional<Integer> page) {
         int pageNumber = page.orElse(0);
         Pageable pageRequest = PageRequest.of(pageNumber, 20);
-        return vehicleRepository.getAllVehiclesByModelYearAndName(date, name, pageRequest);
+        return vehicleRepository.getAllVehiclesByModelYearAndName(name, maker, pageRequest).map(Vehicle::vehicleShortDetailed);
     }
 
 

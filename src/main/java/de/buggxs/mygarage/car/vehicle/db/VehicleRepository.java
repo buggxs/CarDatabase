@@ -28,17 +28,21 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
             "FROM vehicles " +
             "INNER JOIN vehicles_details ON vehicles.id = vehicles_details.vehicle_id " +
             "INNER JOIN model_series_generation ON vehicles.model_series_generation_id = model_series_generation.id " +
-            "WHERE (STR_TO_DATE(:date, '%m/%y') BETWEEN STR_TO_DATE(vehicles_details.model_start, '%m/%y') " +
-            "AND STR_TO_DATE(vehicles_details.model_end, '%m/%y')) " +
-            "AND model_series_generation.name = :name",
+            "INNER JOIN model_series ON model_series.id = model_series_generation.model_series_id " +
+            "INNER JOIN brands ON model_series.brand_id = brands.id " +
+            // "WHERE (STR_TO_DATE(:date, '%m/%y') BETWEEN STR_TO_DATE(vehicles_details.model_start, '%m/%y') " +
+            // "AND STR_TO_DATE(vehicles_details.model_end, '%m/%y')) " +
+            "WHERE model_series_generation.name = :name AND brands.name = :maker",
             countQuery = "SELECT count(vehicles.id) " +
                     "FROM vehicles " +
                     "INNER JOIN vehicles_details ON vehicles.id = vehicles_details.vehicle_id " +
                     "INNER JOIN model_series_generation ON vehicles.model_series_generation_id = model_series_generation.id " +
-                    "WHERE (STR_TO_DATE(:date, '%m/%y') BETWEEN STR_TO_DATE(vehicles_details.model_start, '%m/%y') " +
-                    "AND STR_TO_DATE(vehicles_details.model_end, '%m/%y')) " +
-                    "AND model_series_generation.name = :name",
+                    "INNER JOIN model_series ON model_series.id = model_series_generation.model_series_id " +
+                    "INNER JOIN brands ON model_series.brand_id = brands.id " +
+                    // "WHERE (STR_TO_DATE(:date, '%m/%y') BETWEEN STR_TO_DATE(vehicles_details.model_start, '%m/%y') " +
+                    // "AND STR_TO_DATE(vehicles_details.model_end, '%m/%y')) " +
+                    "AND model_series_generation.name = :name AND brands.name = :maker",
             nativeQuery = true)
-    Page<Vehicle> getAllVehiclesByModelYearAndName(@Param("date") String date, @Param("name") String name, Pageable pageable);
+    Page<Vehicle> getAllVehiclesByModelYearAndName(@Param("name") String name, @Param("maker") String maker, Pageable pageable);
 
 }
