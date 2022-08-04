@@ -41,7 +41,6 @@ public class VehicleApiController {
             @RequestParam(value = "year", required = false) Optional<String> year,
             @RequestParam(value = "maker", required = false) Optional<String> maker,
             @RequestParam(value = "page", required = false) Optional<Integer> page
-
     ) {
         return vehicleService.getAllVehiclesByMakerModelAndYear(maker, name, year, page);
     }
@@ -50,12 +49,6 @@ public class VehicleApiController {
     @GetMapping(value = "/{id}")
     public Vehicle getVehicleById(@PathVariable("id") Long id) {
         return vehicleService.getVehicleById(id);
-    }
-
-    @GetMapping(value = "/find/year")
-    public Page<VehicleShortDetailed> getVehiclesByType(@RequestParam(value = "type", required = false) Optional<String> type) {
-        // TODO: implement
-        return null;
     }
 
 }
