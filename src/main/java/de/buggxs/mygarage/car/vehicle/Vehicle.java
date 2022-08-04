@@ -56,7 +56,7 @@ public class Vehicle {
     @ToString.Exclude
     @JsonManagedReference
     private Set<VehicleTechnicalDetails> vehicleTechnicalDetails;
-    
+
     @JsonIgnore
     public VehicleShortDetailed vehicleShortDetailed() {
         VehicleShortDetailed vehicleShortDetailed = new VehicleShortDetailed(this.id, this.name, this.type);
@@ -72,4 +72,5 @@ public class Vehicle {
 
         return vehicleShortDetailed;
     }
+
 }
