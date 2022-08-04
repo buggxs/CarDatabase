@@ -32,7 +32,7 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
             "INNER JOIN brands ON model_series.brand_id = brands.id " +
             // "WHERE (STR_TO_DATE(:date, '%m/%y') BETWEEN STR_TO_DATE(vehicles_details.model_start, '%m/%y') " +
             // "AND STR_TO_DATE(vehicles_details.model_end, '%m/%y')) " +
-            "WHERE model_series_generation.name = :name AND brands.name = :maker",
+            "AND model_series_generation.name LIKE %:name% AND brands.name LIKE %:maker%",
             countQuery = "SELECT count(vehicles.id) " +
                     "FROM vehicles " +
                     "INNER JOIN vehicles_details ON vehicles.id = vehicles_details.vehicle_id " +
@@ -41,8 +41,8 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
                     "INNER JOIN brands ON model_series.brand_id = brands.id " +
                     // "WHERE (STR_TO_DATE(:date, '%m/%y') BETWEEN STR_TO_DATE(vehicles_details.model_start, '%m/%y') " +
                     // "AND STR_TO_DATE(vehicles_details.model_end, '%m/%y')) " +
-                    "AND model_series_generation.name = :name AND brands.name = :maker",
+                    "AND model_series_generation.name LIKE %:name% AND brands.name LIKE %:maker%",
             nativeQuery = true)
-    Page<Vehicle> getAllVehiclesByModelYearAndName(@Param("name") String name, @Param("maker") String maker, Pageable pageable);
+    Page<Vehicle> getAllVehiclesByModelAndMaker(@Param("maker") String maker, @Param("name") String name, Pageable pageable);
 
 }

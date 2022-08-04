@@ -46,10 +46,30 @@ public class VehicleService {
         return vehicleRepository.getAllVehiclesByName(name.orElseThrow(() -> new ApiRequestException("No name variable found")), pageRequest).map(Vehicle::vehicleShortDetailed);
     }
 
-    public Page<VehicleShortDetailed> getAllVehiclesByModelAndName(String name, String maker, Optional<Integer> page) {
+    public Page<VehicleShortDetailed> getAllVehiclesByMakerModelAndYear(
+            Optional<String> maker, Optional<String> name,
+            Optional<String> year, Optional<Integer> page
+    ) {
         int pageNumber = page.orElse(0);
         Pageable pageRequest = PageRequest.of(pageNumber, 20);
-        return vehicleRepository.getAllVehiclesByModelYearAndName(name, maker, pageRequest).map(Vehicle::vehicleShortDetailed);
+        Page<Vehicle> vehicles = null;
+
+        if (name.isPresent() && year.isPresent() && maker.isPresent()) {
+            // TODO: Add method after end Date is crawled
+        } else if (name.isPresent() && maker.isPresent()) {
+            vehicles = vehicleRepository.getAllVehiclesByModelAndMaker(maker.get(), name.get(), pageRequest);
+        } else if (name.isPresent()) {
+            // TODO: Add query find by only name
+        } else if (maker.isPresent()) {
+            // TODO: Add query find by only maker
+        } else if (year.isPresent()) {
+            // TODO: Add query find by only year
+        } else {
+            vehicles = vehicleRepository.findAll(pageRequest);
+        }
+
+        assert vehicles != null;
+        return vehicles.map(Vehicle::vehicleShortDetailed);
     }
 
 

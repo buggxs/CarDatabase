@@ -1,9 +1,12 @@
 package de.buggxs.mygarage.car.brand;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import de.buggxs.mygarage.car.vehicle.Vehicle;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -29,4 +32,9 @@ public class ModelSeriesGeneration {
     @ManyToOne
     @JoinColumn(name = "model_series_id", nullable = false)
     private ModelSeries modelSeries;
+
+    @OneToMany(mappedBy = "modelSeriesGeneration")
+    @ToString.Exclude
+    @JsonManagedReference
+    private Set<Vehicle> vehicleList;
 }

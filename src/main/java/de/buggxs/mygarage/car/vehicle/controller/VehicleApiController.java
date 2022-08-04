@@ -37,20 +37,13 @@ public class VehicleApiController {
 
     @GetMapping(value = "/find")
     public Page<VehicleShortDetailed> getVehiclesByName(
-            @RequestParam(value = "type", required = false) Optional<String> name,
+            @RequestParam(value = "name", required = false) Optional<String> name,
             @RequestParam(value = "year", required = false) Optional<String> year,
             @RequestParam(value = "maker", required = false) Optional<String> maker,
             @RequestParam(value = "page", required = false) Optional<Integer> page
 
     ) {
-        if (name.isPresent() && year.isPresent() && maker.isPresent()) {
-            // TODO: Add method after end Date is crawled
-        }
-
-        if (name.isPresent() && maker.isPresent()) {
-            return vehicleService.getAllVehiclesByModelAndName(name.get(), maker.get(), page);
-        }
-        return vehicleService.getAllVehiclesByName(name, page);
+        return vehicleService.getAllVehiclesByMakerModelAndYear(maker, name, year, page);
     }
 
 

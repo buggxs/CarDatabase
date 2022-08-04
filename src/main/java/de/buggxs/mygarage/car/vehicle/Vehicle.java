@@ -1,7 +1,9 @@
 package de.buggxs.mygarage.car.vehicle;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import de.buggxs.mygarage.car.brand.ModelSeriesGeneration;
 import lombok.*;
 
 import javax.persistence.*;
@@ -34,6 +36,17 @@ public class Vehicle {
     @JsonIgnore
     private String url;
 
+    @Column(name = "model_series_generation_id", updatable = false, insertable = false)
+    @JsonIgnore
+    private Long modelSeriesGenerationId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "model_series_generation_id", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_model_series_generation_vehicle"))
+    @JsonBackReference
+    @ToString.Exclude
+    private ModelSeriesGeneration modelSeriesGeneration;
+
     @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY)
     @ToString.Exclude
     @JsonManagedReference
@@ -43,14 +56,20 @@ public class Vehicle {
     @ToString.Exclude
     @JsonManagedReference
     private Set<VehicleTechnicalDetails> vehicleTechnicalDetails;
-
+    
     @JsonIgnore
     public VehicleShortDetailed vehicleShortDetailed() {
+        VehicleShortDetailed vehicleShortDetailed = new VehicleShortDetailed(this.id, this.name, this.type);
         if (!this.vehicleDetails.isEmpty()) {
             VehicleDetails vehicleDetailsTemp = this.vehicleDetails.iterator().next();
-            return new VehicleShortDetailed(this.id, this.name, this.model, this.type,
-                    vehicleDetailsTemp.getModelStart(), vehicleDetailsTemp.getModelEnd());
+            vehicleShortDetailed.setModelStart(vehicleDetailsTemp.getModelStart());
+            vehicleShortDetailed.setModelEnd(vehicleDetailsTemp.getModelEnd());
         }
-        return new VehicleShortDetailed(this.name, this.model, this.type);
+
+        if (this.modelSeriesGeneration != null) {
+            vehicleShortDetailed.setModel(this.modelSeriesGeneration.getName());
+        }
+
+        return vehicleShortDetailed;
     }
 }
