@@ -7,15 +7,19 @@ import de.buggxs.mygarage.car.vehicle.Vehicle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@ActiveProfiles("test")
 public class VehicleRepositoryEmbeddedTest {
 
     final Brand[] CONST_BRANDS = {
@@ -61,6 +65,11 @@ public class VehicleRepositoryEmbeddedTest {
                 .isNotEmpty()
                 .hasSize(4);
         assertThat(testVehicleName).isEqualTo(CONST_VEHICLES[0].getName());
+    }
+
+    @Test
+    void searchByMakerNameAndDate() {
+        Page<Vehicle> vehiclePage = vehicleRepository.getAllVehiclesByModelAndMaker("vw", null, null, Pageable.ofSize(20));
     }
 
 }

@@ -1,6 +1,7 @@
 package de.buggxs.mygarage.car.vehicle.service;
 
 import de.buggxs.mygarage.car.vehicle.Vehicle;
+import de.buggxs.mygarage.car.vehicle.VehicleDetails;
 import de.buggxs.mygarage.car.vehicle.VehicleShortDetailed;
 import de.buggxs.mygarage.car.vehicle.db.VehicleRepository;
 import de.buggxs.mygarage.exception.ApiRequestException;
@@ -57,7 +58,7 @@ public class VehicleService {
         Page<Vehicle> vehicles =
                 vehicleRepository.getAllVehiclesByModelAndMaker(
                         // We can't pass NULL for LIKE queries because it will distort the results
-                        maker.orElse(""), name.orElse(""), date.orElse(null), pageRequest
+                        maker.orElse(""), name.orElse(""), date.map(VehicleDetails::convertStringToDate).orElse(null), pageRequest
                 );
 
         return vehicles.map(Vehicle::vehicleShortDetailed);

@@ -60,10 +60,11 @@ public class Vehicle {
     @JsonIgnore
     public VehicleShortDetailed vehicleShortDetailed() {
         VehicleShortDetailed vehicleShortDetailed = new VehicleShortDetailed(this.id, this.name, this.type);
-        if (!this.vehicleDetails.isEmpty()) {
+        
+        if (this.vehicleDetails != null && !this.vehicleDetails.isEmpty()) {
             VehicleDetails vehicleDetailsTemp = this.vehicleDetails.iterator().next();
-            vehicleShortDetailed.setModelStart(vehicleDetailsTemp.getModelStart());
-            vehicleShortDetailed.setModelEnd(vehicleDetailsTemp.getModelEnd());
+            vehicleShortDetailed.setModelStart(vehicleDetailsTemp.getModelStartAsString());
+            vehicleShortDetailed.setModelEnd(vehicleDetailsTemp.getModelEndAsString());
         }
 
         if (this.modelSeriesGeneration != null) {
