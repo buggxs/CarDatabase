@@ -72,4 +72,5 @@ public class Vehicle {
 
         return vehicleShortDetailed;
     }
+
 }
