@@ -30,19 +30,21 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
             "INNER JOIN model_series_generation ON vehicles.model_series_generation_id = model_series_generation.id " +
             "INNER JOIN model_series ON model_series.id = model_series_generation.model_series_id " +
             "INNER JOIN brands ON model_series.brand_id = brands.id " +
-            // "WHERE (STR_TO_DATE(:date, '%m/%y') BETWEEN STR_TO_DATE(vehicles_details.model_start, '%m/%y') " +
-            // "AND STR_TO_DATE(vehicles_details.model_end, '%m/%y')) " +
-            "AND model_series_generation.name LIKE %:name% AND brands.name LIKE %:maker%",
+            "WHERE ((:date IS NULL) OR (STR_TO_DATE(:date, '%m/%y') BETWEEN STR_TO_DATE(vehicles_details.model_start, '%m/%y') " +
+            "       AND STR_TO_DATE(vehicles_details.model_end, '%m/%y'))) " +
+            "AND ((:name IS NUll) OR (model_series_generation.name LIKE %:name%)) " +
+            "AND ((:maker IS NULL) OR (brands.name LIKE %:maker%))",
             countQuery = "SELECT count(vehicles.id) " +
                     "FROM vehicles " +
                     "INNER JOIN vehicles_details ON vehicles.id = vehicles_details.vehicle_id " +
                     "INNER JOIN model_series_generation ON vehicles.model_series_generation_id = model_series_generation.id " +
                     "INNER JOIN model_series ON model_series.id = model_series_generation.model_series_id " +
                     "INNER JOIN brands ON model_series.brand_id = brands.id " +
-                    // "WHERE (STR_TO_DATE(:date, '%m/%y') BETWEEN STR_TO_DATE(vehicles_details.model_start, '%m/%y') " +
-                    // "AND STR_TO_DATE(vehicles_details.model_end, '%m/%y')) " +
-                    "AND model_series_generation.name LIKE %:name% AND brands.name LIKE %:maker%",
+                    "WHERE ((:date IS NULL) OR (STR_TO_DATE(:date, '%m/%y') BETWEEN STR_TO_DATE(vehicles_details.model_start, '%m/%y') " +
+                    "       AND STR_TO_DATE(vehicles_details.model_end, '%m/%y'))) " +
+                    "AND ((:name IS NULL) OR (model_series_generation.name LIKE %:name%)) " +
+                    "AND ((:maker IS NULL) OR (brands.name LIKE %:maker%))",
             nativeQuery = true)
-    Page<Vehicle> getAllVehiclesByModelAndMaker(@Param("maker") String maker, @Param("name") String name, Pageable pageable);
+    Page<Vehicle> getAllVehiclesByModelAndMaker(@Param("maker") String maker, @Param("name") String name, @Param("date") String date, Pageable pageable);
 
 }
