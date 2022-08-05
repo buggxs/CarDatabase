@@ -45,6 +45,6 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
                     "       AND function('date_format', vd.modelEnd, '%m/%y'))) " +
                     "AND ((:name IS NUll) OR (msg.name LIKE %:name%)) " +
                     "AND ((:maker IS NULL) OR (b.name LIKE %:maker%))")
-    Page<Vehicle> getAllVehiclesByModelAndMaker(@Param("maker") String maker, @Param("name") String name, @Param("date") LocalDate date, Pageable pageable);
+    Page<Vehicle> getAllVehiclesByModelMakerAndDate(@Param("maker") String maker, @Param("name") String name, @Param("date") LocalDate date, Pageable pageable);
 
 }

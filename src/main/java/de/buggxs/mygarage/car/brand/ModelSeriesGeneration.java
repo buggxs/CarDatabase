@@ -29,6 +29,10 @@ public class ModelSeriesGeneration {
     @JsonIgnore
     private String url;
 
+    @Column(name = "model_series_id", insertable = false, updatable = false)
+    @JsonIgnore
+    private Long modelSeriesId;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "model_series_id", nullable = false)
     private ModelSeries modelSeries;
@@ -37,4 +41,10 @@ public class ModelSeriesGeneration {
     @ToString.Exclude
     @JsonManagedReference
     private Set<Vehicle> vehicleList;
+
+    public ModelSeriesGeneration(String name, String url, ModelSeries modelSeries) {
+        this.name = name;
+        this.url = url;
+        this.modelSeries = modelSeries;
+    }
 }

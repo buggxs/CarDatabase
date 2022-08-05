@@ -56,7 +56,7 @@ public class VehicleService {
         int pageNumber = page.orElse(0);
         Pageable pageRequest = PageRequest.of(pageNumber, 20);
         Page<Vehicle> vehicles =
-                vehicleRepository.getAllVehiclesByModelAndMaker(
+                vehicleRepository.getAllVehiclesByModelMakerAndDate(
                         // We can't pass NULL for LIKE queries because it will distort the results
                         maker.orElse(""), name.orElse(""), date.map(VehicleDetails::convertStringToDate).orElse(null), pageRequest
                 );
