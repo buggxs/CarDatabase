@@ -40,23 +40,23 @@ public class Vehicle {
     @JsonIgnore
     private Long modelSeriesGenerationId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "model_series_generation_id", referencedColumnName = "id",
             foreignKey = @ForeignKey(name = "FK_model_series_generation_vehicle"))
     @JsonBackReference
     @ToString.Exclude
     private ModelSeriesGeneration modelSeriesGeneration;
 
-    @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     @JsonManagedReference
     private Set<VehicleDetails> vehicleDetails;
 
-    @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     @JsonManagedReference
     private Set<VehicleTechnicalDetails> vehicleTechnicalDetails;
-    
+
     @JsonIgnore
     public VehicleShortDetailed vehicleShortDetailed() {
         VehicleShortDetailed vehicleShortDetailed = new VehicleShortDetailed(this.id, this.name, this.type);

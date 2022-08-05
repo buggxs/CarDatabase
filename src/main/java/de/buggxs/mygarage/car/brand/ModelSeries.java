@@ -26,7 +26,7 @@ public class ModelSeries {
     @JsonIgnore
     private String url;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
 }

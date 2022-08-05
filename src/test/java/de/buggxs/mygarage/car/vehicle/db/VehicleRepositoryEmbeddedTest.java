@@ -5,7 +5,6 @@ import de.buggxs.mygarage.car.brand.ModelSeries;
 import de.buggxs.mygarage.car.brand.ModelSeriesGeneration;
 import de.buggxs.mygarage.car.vehicle.Vehicle;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -40,10 +39,10 @@ public class VehicleRepositoryEmbeddedTest {
     };
 
     final Vehicle[] CONST_VEHICLES = {
-            new Vehicle(1L, "Arteon  (3H)", "", "VW Arteon 1.4 eHybrid OPF Elegance DSG (ab 11/20)", "", 2L, null, null, null),
-            new Vehicle(2L, "Golf  (CD)", "", "VW Golf 1.0 TSI ACTIVE (01/21 - 08/21)", "", 3L, null, null, null),
-            new Vehicle(9991L, "Tiguan  (5N)", "", "VW Tiguan 1.4 TSI BMT Cityscape (05/15 - 04/16)", "", 49L, null, null, null),
-            new Vehicle(39988L, "SL-Klasse  (W113)", "", "Mercedes 230 SL Automatik (07/63 - 01/67)", "", 371L, null, null, null),
+            new Vehicle(1L, "Arteon  (3H)", "", "VW Arteon 1.4 eHybrid OPF Elegance DSG (ab 11/20)", "", 2L, CONST_MODEL_SERIES_GENERATION[0], null, null),
+            new Vehicle(2L, "Golf  (CD)", "", "VW Golf 1.0 TSI ACTIVE (01/21 - 08/21)", "", 3L, CONST_MODEL_SERIES_GENERATION[1], null, null),
+            new Vehicle(9991L, "Tiguan  (5N)", "", "VW Tiguan 1.4 TSI BMT Cityscape (05/15 - 04/16)", "", 49L, CONST_MODEL_SERIES_GENERATION[2], null, null),
+            new Vehicle(39988L, "SL-Klasse  (W113)", "", "Mercedes 230 SL Automatik (07/63 - 01/67)", "", 371L, CONST_MODEL_SERIES_GENERATION[3], null, null),
     };
 
     @Autowired
@@ -55,10 +54,13 @@ public class VehicleRepositoryEmbeddedTest {
     }
 
     @Test
-    @Disabled
-    void searchByMakerNameAndDate_Test() {
-        Page<Vehicle> vehiclesList = vehicleRepository.getAllVehiclesByName("golf", Pageable.ofSize(1));
-        assertThat(vehiclesList).isNotEmpty();
+    void findAllVehicles_Test() {
+        Page<Vehicle> vehiclesPage = vehicleRepository.findAll(Pageable.ofSize(20));
+        String testVehicleName = vehiclesPage.getContent().get(0).getName();
+        assertThat(vehiclesPage)
+                .isNotEmpty()
+                .hasSize(4);
+        assertThat(testVehicleName).isEqualTo(CONST_VEHICLES[0].getName());
     }
 
 }
