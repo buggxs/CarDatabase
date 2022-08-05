@@ -188,7 +188,7 @@
                                 <phase>package</phase>
                                 <configuration>
                                     <to>
-                                        <image>docker.io/digitalstreich/${app.image.name}:${version}</image>
+                                        <image>docker.io/digitalstreich/${app.image.name}:${project.version}</image>
                                     </to>
                                 </configuration>
                                 <goals>
@@ -242,7 +242,7 @@
                                 <phase>package</phase>
                                 <configuration>
                                     <to>
-                                        <image>digitalstreich/${app.image.name}:${version}</image>
+                                        <image>digitalstreich/${app.image.name}:${project.version}</image>
                                     </to>
                                 </configuration>
                                 <goals>
