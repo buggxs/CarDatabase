@@ -78,9 +78,9 @@ public class VehicleRepositoryEmbeddedTest {
     @BeforeAll
     public void setup() {
         VehicleDetails CONST_VEHICLE_DETAILS1 = new VehicleDetails(11L, CONST_VEHICLE1.getId(), "03/04", "04/11", "0603", "COQ", CONST_VEHICLE1);
-        VehicleDetails CONST_VEHICLE_DETAILS2 = new VehicleDetails(12L, CONST_VEHICLE2.getId(), "03/04", "04/11", "0603", "COQ", CONST_VEHICLE2);
-        VehicleDetails CONST_VEHICLE_DETAILS3 = new VehicleDetails(13L, CONST_VEHICLE3.getId(), "03/04", "04/11", "0603", "COQ", CONST_VEHICLE3);
-        VehicleDetails CONST_VEHICLE_DETAILS4 = new VehicleDetails(14L, CONST_VEHICLE4.getId(), "03/04", "04/11", "0603", "COQ", CONST_VEHICLE4);
+        VehicleDetails CONST_VEHICLE_DETAILS2 = new VehicleDetails(12L, CONST_VEHICLE2.getId(), "03/04", "04/11", "0604", "COQ", CONST_VEHICLE2);
+        VehicleDetails CONST_VEHICLE_DETAILS3 = new VehicleDetails(13L, CONST_VEHICLE3.getId(), "03/04", "04/11", "0605", "COQ", CONST_VEHICLE3);
+        VehicleDetails CONST_VEHICLE_DETAILS4 = new VehicleDetails(14L, CONST_VEHICLE4.getId(), "03/04", "04/11", "0606", "COQ", CONST_VEHICLE4);
 
         CONST_VEHICLE1.setVehicleDetails(Set.of(CONST_VEHICLE_DETAILS1));
         CONST_VEHICLE2.setVehicleDetails(Set.of(CONST_VEHICLE_DETAILS2));
@@ -100,7 +100,6 @@ public class VehicleRepositoryEmbeddedTest {
         CONST_MODEL_SERIES_GEN3.setVehicleList(Set.of(CONST_VEHICLES[2]));
         CONST_MODEL_SERIES_GEN4.setVehicleList(Set.of(CONST_VEHICLES[3]));
 
-        // vehicleRepository.saveAll(Arrays.asList(CONST_VEHICLES));
         brandRepository.saveAll(Arrays.asList(CONST_BRANDS));
     }
 
@@ -113,16 +112,37 @@ public class VehicleRepositoryEmbeddedTest {
     }
 
     @Test
-    void searchByMakerNameAndDate_Test() {
+    void searchByMakerNameAndDate_TestSearchForMaker() {
         Page<Vehicle> vehiclePage = underTest.getAllVehiclesByModelMakerAndDate("vw", null, null, Pageable.ofSize(20));
         assertThat(vehiclePage)
-                .isNotEmpty();
+                .isNotEmpty()
+                .hasSize(3);
+    }
+
+    @Test
+    void searchByMakerNameAndDate_TestSearchForName() {
+        Page<Vehicle> vehiclePage = underTest.getAllVehiclesByModelMakerAndDate(null, "golf", null, Pageable.ofSize(20));
+        assertThat(vehiclePage)
+                .isNotEmpty()
+                .hasSize(1);
+        Vehicle testVehicle = vehiclePage.getContent().get(0);
+        assertThat(testVehicle.getName()).isEqualTo(CONST_VEHICLE2.getName());
+    }
+
+    @Test
+    void searchByMakerNameAndDate_TestSearchForMakerAndName() {
+        Page<Vehicle> vehiclePage = underTest.getAllVehiclesByModelMakerAndDate("vw", "tiguan", null, Pageable.ofSize(20));
+        assertThat(vehiclePage)
+                .isNotEmpty()
+                .hasSize(1);
+        Vehicle testVehicle = vehiclePage.getContent().get(0);
+        assertThat(testVehicle.getName()).isEqualTo(CONST_VEHICLE3.getName());
     }
 
     @Test
     void getVehiclesByHSNTSN_Test() {
         Page<Vehicle> vehiclePage = underTest.getAllVehiclesByHsnTsn("0603", "COQ", Pageable.ofSize(20));
-        assertThat(vehiclePage).isNotEmpty().hasSize(4);
+        assertThat(vehiclePage).isNotEmpty().hasSize(1);
     }
 
     @Test
