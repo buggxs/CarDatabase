@@ -63,6 +63,16 @@ public class VehicleDetails {
     @ToString.Exclude
     private Vehicle vehicle;
 
+    public VehicleDetails(Long id, Long vehicleId, String modelSeriesStart, String modelSeriesEnd, String hsnKey, String tsnKey, Vehicle vehicle) {
+        this.id = id;
+        this.vehicleId = vehicleId;
+        this.hsnKey = hsnKey;
+        this.tsnKey = tsnKey;
+        this.modelSeriesStart = modelSeriesStart;
+        this.modelSeriesEnd = modelSeriesEnd;
+        this.vehicle = vehicle;
+    }
+
     public static LocalDate convertStringToDate(String date) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-y");
         return LocalDate.parse(date, dtf);
