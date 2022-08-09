@@ -38,10 +38,11 @@ public class VehicleApiController {
     @GetMapping(value = "/find")
     public Page<VehicleShortDetailed> getVehiclesByName(
             @RequestParam(value = "name", required = false) Optional<String> name,
+            @RequestParam(value = "date", required = false) Optional<String> date,
+            @RequestParam(value = "maker", required = false) Optional<String> maker,
             @RequestParam(value = "page", required = false) Optional<Integer> page
-
     ) {
-        return vehicleService.getAllVehiclesByName(name, page);
+        return vehicleService.getAllVehiclesByMakerModelAndYear(maker, name, date, page);
     }
 
 

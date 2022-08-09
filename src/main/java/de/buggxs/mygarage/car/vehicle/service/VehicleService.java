@@ -1,6 +1,7 @@
 package de.buggxs.mygarage.car.vehicle.service;
 
 import de.buggxs.mygarage.car.vehicle.Vehicle;
+import de.buggxs.mygarage.car.vehicle.VehicleDetails;
 import de.buggxs.mygarage.car.vehicle.VehicleShortDetailed;
 import de.buggxs.mygarage.car.vehicle.db.VehicleRepository;
 import de.buggxs.mygarage.exception.ApiRequestException;
@@ -45,5 +46,23 @@ public class VehicleService {
         Pageable pageRequest = PageRequest.of(pageNumber, 20);
         return vehicleRepository.getAllVehiclesByName(name.orElseThrow(() -> new ApiRequestException("No name variable found")), pageRequest).map(Vehicle::vehicleShortDetailed);
     }
+
+    public Page<VehicleShortDetailed> getAllVehiclesByMakerModelAndYear(
+            Optional<String> maker,
+            Optional<String> name,
+            Optional<String> date,
+            Optional<Integer> page
+    ) {
+        int pageNumber = page.orElse(0);
+        Pageable pageRequest = PageRequest.of(pageNumber, 20);
+        Page<Vehicle> vehicles =
+                vehicleRepository.getAllVehiclesByModelMakerAndDate(
+                        // We can't pass NULL for LIKE queries because it will distort the results
+                        maker.orElse(""), name.orElse(""), date.map(VehicleDetails::convertStringToDate).orElse(null), pageRequest
+                );
+
+        return vehicles.map(Vehicle::vehicleShortDetailed);
+    }
+
 
 }

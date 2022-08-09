@@ -11,19 +11,18 @@ public class VehicleShortDetailed {
 
     private Long id;
 
+    private String model;
+    private String type;
     private String name;
 
-    private String model;
-
-    private String type;
 
     private String modelStart;
 
     private String modelEnd;
 
-    public VehicleShortDetailed(String name, String model, String type) {
+    public VehicleShortDetailed(Long id, String name, String type) {
+        this.id = id;
         this.name = name;
-        this.model = model;
         this.type = type;
     }
 }

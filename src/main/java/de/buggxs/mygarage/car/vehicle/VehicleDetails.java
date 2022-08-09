@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Entity
@@ -30,11 +30,13 @@ public class VehicleDetails {
     @Column(name = "type")
     private String type;
 
+    @Convert(converter = MyDateAttributeConverter.class)
     @Column(name = "model_start")
-    private String modelStart;
+    private LocalDate modelStart;
 
+    @Convert(converter = MyDateAttributeConverter.class)
     @Column(name = "model_end")
-    private String modelEnd;
+    private LocalDate modelEnd;
 
     @Column(name = "model_series_start")
     private String modelSeriesStart;
@@ -61,9 +63,30 @@ public class VehicleDetails {
     @ToString.Exclude
     private Vehicle vehicle;
 
-    public String getModelEnd() {
+    public VehicleDetails(Long id, Long vehicleId, String modelSeriesStart, String modelSeriesEnd, String hsnKey, String tsnKey, Vehicle vehicle) {
+        this.id = id;
+        this.vehicleId = vehicleId;
+        this.hsnKey = hsnKey;
+        this.tsnKey = tsnKey;
+        this.modelSeriesStart = modelSeriesStart;
+        this.modelSeriesEnd = modelSeriesEnd;
+        this.vehicle = vehicle;
+    }
+
+    public static LocalDate convertStringToDate(String date) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM-y");
+        return LocalDate.parse(date, dtf);
+    }
+
+    public String getModelStartAsString() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/y");
-        LocalDateTime now = LocalDateTime.now();
-        return (modelEnd != null) ? modelEnd : dtf.format(now);
+        LocalDate now = modelStart != null ? modelStart : LocalDate.now();
+        return dtf.format(now);
+    }
+
+    public String getModelEndAsString() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/y");
+        LocalDate now = modelEnd != null ? modelEnd : LocalDate.now();
+        return dtf.format(now);
     }
 }
