@@ -3,6 +3,7 @@ package de.buggxs.mygarage.car.brand;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -39,6 +40,7 @@ public class ModelSeries {
     @JsonBackReference
     private Brand brand;
 
+    @JsonProperty("model_series_generations")
     @OneToMany(mappedBy = "modelSeries", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ToString.Exclude
     @JsonManagedReference
