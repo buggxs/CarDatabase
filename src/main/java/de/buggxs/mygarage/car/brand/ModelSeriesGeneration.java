@@ -20,6 +20,7 @@ public class ModelSeriesGeneration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonIgnore
     private Long id;
 
     @Column(name = "name")
@@ -35,11 +36,13 @@ public class ModelSeriesGeneration {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "model_series_id", nullable = false)
+    @JsonIgnore
     private ModelSeries modelSeries;
 
     @OneToMany(mappedBy = "modelSeriesGeneration", cascade = CascadeType.ALL)
     @ToString.Exclude
     @JsonManagedReference
+    @JsonIgnore
     private Set<Vehicle> vehicleList;
 
     public ModelSeriesGeneration(String name, String url, ModelSeries modelSeries) {

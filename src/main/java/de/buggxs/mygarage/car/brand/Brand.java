@@ -19,12 +19,14 @@ public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonIgnore
     private Long id;
     @Column(name = "name")
     private String name;
     @Column(name = "url")
     @JsonIgnore
     private String url;
+
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
     @ToString.Exclude
     @JsonManagedReference
