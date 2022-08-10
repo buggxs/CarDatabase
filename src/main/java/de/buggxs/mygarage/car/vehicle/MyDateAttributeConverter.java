@@ -19,8 +19,15 @@ public class MyDateAttributeConverter implements AttributeConverter<LocalDate, S
 
     @Override
     public LocalDate convertToEntityAttribute(String databaseDate) {
+        if (databaseDate == null) {
+            return null;
+        }
+
+        if (databaseDate.contains("00")) {
+            databaseDate = databaseDate.replace("00", "2000");
+        }
         String parsedDate = String.format("01/%s", databaseDate);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/y");
-        return databaseDate != null ? LocalDate.parse(parsedDate, dtf) : null;
+        return LocalDate.parse(parsedDate, dtf);
     }
 }
