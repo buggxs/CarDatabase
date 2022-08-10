@@ -25,9 +25,11 @@ public class Brand {
     @Column(name = "url")
     @JsonIgnore
     private String url;
+
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
     @ToString.Exclude
     @JsonManagedReference
+    @JsonIgnore
     private Set<ModelSeries> modelSeriesSet;
 
     public Brand(Long id, String name, String url) {

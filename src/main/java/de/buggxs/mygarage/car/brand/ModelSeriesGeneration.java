@@ -35,11 +35,13 @@ public class ModelSeriesGeneration {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "model_series_id", nullable = false)
+    @JsonIgnore
     private ModelSeries modelSeries;
 
     @OneToMany(mappedBy = "modelSeriesGeneration", cascade = CascadeType.ALL)
     @ToString.Exclude
     @JsonManagedReference
+    @JsonIgnore
     private Set<Vehicle> vehicleList;
 
     public ModelSeriesGeneration(String name, String url, ModelSeries modelSeries) {
