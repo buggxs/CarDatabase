@@ -2,6 +2,7 @@ package de.buggxs.mygarage.car.brand;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,7 +20,6 @@ public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @JsonIgnore
     private Long id;
     @Column(name = "name")
     private String name;
@@ -27,6 +27,7 @@ public class Brand {
     @JsonIgnore
     private String url;
 
+    @JsonProperty("model_series")
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
     @ToString.Exclude
     @JsonManagedReference
