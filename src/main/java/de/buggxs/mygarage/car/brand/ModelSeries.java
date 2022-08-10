@@ -19,6 +19,7 @@ public class ModelSeries {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonIgnore
     private Long id;
 
     @Column(name = "name")
@@ -34,11 +35,13 @@ public class ModelSeries {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "brand_id", nullable = false, insertable = false, updatable = false)
+    @JsonIgnore
     private Brand brand;
 
     @OneToMany(mappedBy = "modelSeries", cascade = CascadeType.ALL)
     @ToString.Exclude
     @JsonManagedReference
+    @JsonIgnore
     private Set<ModelSeriesGeneration> modelSeriesGenerationSet;
 
     public ModelSeries(String name, String url, Brand brand) {
