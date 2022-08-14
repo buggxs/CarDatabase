@@ -28,11 +28,33 @@ public class ModelSeriesService {
         return modelSeriesRepository.findAll(pageRequest);
     }
 
+    public Page<ModelSeries> findAllModelSeries(Optional<String> name, Optional<Integer> page) {
+        int pageNumber = page.orElse(0);
+        if (name.isPresent()) {
+            log.info("Showing model series with name {} and page number {}", name.get(), pageNumber);
+            Pageable pageRequest = PageRequest.of(pageNumber, 200);
+            return modelSeriesRepository.findModelSeriesByNameContainingIgnoreCase(name.get(), pageRequest);
+        } else {
+            return showAllModelSeries(page);
+        }
+    }
+
     public Page<ModelSeriesGeneration> showAllModelSeriesGenerations(Optional<Integer> page) {
         int pageNumber = page.orElse(0);
         log.info("Showing model series generation page number {}", pageNumber);
         Pageable pageRequest = PageRequest.of(pageNumber, 200);
         return modelSeriesGenerationRepository.findAll(pageRequest);
+    }
+
+    public Page<ModelSeriesGeneration> findAllModelSeriesGeneration(Optional<String> name, Optional<Integer> page) {
+        int pageNumber = page.orElse(0);
+        if (name.isPresent()) {
+            log.info("Showing model series with name {} and page number {}", name.get(), pageNumber);
+            Pageable pageRequest = PageRequest.of(pageNumber, 200);
+            return modelSeriesGenerationRepository.findModelSeriesGenerationByNameContainingIgnoreCase(name.get(), pageRequest);
+        } else {
+            return showAllModelSeriesGenerations(page);
+        }
     }
 
 }

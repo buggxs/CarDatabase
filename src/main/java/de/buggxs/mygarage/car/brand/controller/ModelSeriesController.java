@@ -28,6 +28,14 @@ public class ModelSeriesController {
         return modelSeriesService.showAllModelSeries(page);
     }
 
+    @GetMapping(value = "/find")
+    public Page<ModelSeries> findAllModelSeries(
+            @RequestParam(value = "name", required = false) Optional<String> name,
+            @RequestParam(value = "page", required = false) Optional<Integer> page
+    ) {
+        return modelSeriesService.findAllModelSeries(name, page);
+    }
+
     @GetMapping(value = "/generations")
     public Page<ModelSeriesGeneration> showAllModelSeriesGenerations(
             @RequestParam(value = "page", required = false) Optional<Integer> page
@@ -35,4 +43,11 @@ public class ModelSeriesController {
         return modelSeriesService.showAllModelSeriesGenerations(page);
     }
 
+    @GetMapping(value = "/generations/find")
+    public Page<ModelSeriesGeneration> findAllModelSeriesGenerations(
+            @RequestParam(value = "name", required = false) Optional<String> name,
+            @RequestParam(value = "page", required = false) Optional<Integer> page
+    ) {
+        return modelSeriesService.findAllModelSeriesGeneration(name, page);
+    }
 }
