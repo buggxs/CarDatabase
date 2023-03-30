@@ -26,7 +26,7 @@ public class VehicleTechnicalDetails {
     private Long vehicleId;
 
     @Column(name = "engine_type")
-    private String engineType;
+    private Long engineType;
 
     @Column(name = "engine_code")
     private String engineCode;
@@ -44,43 +44,45 @@ public class VehicleTechnicalDetails {
     private String torque;
 
     @Column(name = "fuel_type")
-    private String fuelType;
+    private Long fuelType;
 
     @Column(name = "fuel_type_2")
-    private String fuelTypeE;
+    private Long fuelType2;
 
-    @Column(name = "drive_type")
-    private String driveType;
+    @OneToOne
+    @JoinColumn(name = "drive_type", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_vehicles_details_technically_vehicles_drive_type"))
+    private DriveType driveType;
 
     @Column(name = "gear_type")
-    private String gearType;
+    private Long gearType;
 
     @Column(name = "gear_amount")
     private String gearAmount;
 
     @Column(name = "emission_class")
-    private String emissionClass;
+    private Long emissionClass;
 
     @Column(name = "position_engine")
-    private String positionEngine;
+    private Long positionEngine;
 
     @Column(name = "exhaust_gas_cleaning")
-    private String exhaustGasCleaning;
+    private Long exhaustGasCleaning;
 
     @Column(name = "amount_cylinders")
     private String amountCylinders;
 
     @Column(name = "mixture_preparation")
-    private String mixturePreparation;
+    private Long mixturePreparation;
 
     @Column(name = "engine_loading")
-    private String engineLoading;
+    private Long engineLoading;
 
     @Column(name = "amount_valves")
     private String amountValves;
 
     @Column(name = "displacement")
-    private String displacement;
+    private Long displacement;
 
     @Column(name = "max_power_rpm")
     private String maxPowerRpm;
