@@ -9,10 +9,10 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@Table(name = "vehicles_drive_type")
+@Table(name = "vehicles_mixture_preparation")
 @AllArgsConstructor
 @NoArgsConstructor
-public class DriveType {
+public class MixturePreparation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class DriveType {
     @Column(name = "name_de")
     private String nameDe;
 
-    @OneToOne(mappedBy = "driveType")
+    @OneToOne(mappedBy = "mixturePreparation")
     @JsonIgnore
     private VehicleTechnicalDetails vehicleTechnicalDetails;
 }
