@@ -12,6 +12,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -64,5 +70,34 @@ public class VehicleService {
         return vehicles.map(Vehicle::vehicleShortDetailed);
     }
 
+    public void updateDatabaseData() throws IOException {
+        List<Vehicle> vehiclePage = vehicleRepository.findAll();
+        File file = new File("date_update.sql");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+        for (Vehicle vehicle : vehiclePage) {
+            String type = vehicle.getType();
+            int index = type.lastIndexOf('(');
+            String date = type.substring(index);
+            System.out.println(date);
+            if (date.contains("ab")) {
+                String insertDate = date.replace("(ab", "").replace(")", "").strip();
+                String sql = String.format("UPDATE vehicles_details SET model_start = '%s' WHERE vehicle_id = %d;", insertDate, vehicle.getId());
+                bw.write(sql);
+                bw.newLine();
+            } else {
+                List<String> insertDates = Arrays.stream(date.replace("(", "").replace(")", "").split("-")).toList();
+                String sql = String.format("UPDATE vehicles_details SET model_start = '%s', model_end = '%s' WHERE vehicle_id = %d;", insertDates.get(0).strip(), insertDates.get(1).strip(), vehicle.getId());
+                bw.write(sql);
+                bw.newLine();
+            }
+        }
+
+        bw.flush();
+        bw.close();
+    }
 
 }

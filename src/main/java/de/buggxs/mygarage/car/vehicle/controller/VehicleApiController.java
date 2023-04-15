@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @RestController
@@ -51,4 +52,13 @@ public class VehicleApiController {
         return vehicleService.getVehicleById(id);
     }
 
+    @GetMapping(value = "/data/update")
+    public String updateData() {
+        try {
+            vehicleService.updateDatabaseData();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return "success";
+    }
 }

@@ -25,8 +25,10 @@ public class VehicleTechnicalDetails {
     @JsonIgnore
     private Long vehicleId;
 
-    @Column(name = "engine_type")
-    private String engineType;
+    @OneToOne
+    @JoinColumn(name = "engine_type", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_vehicles_details_technically_vehicles_engine_type"))
+    private EngineType engineType;
 
     @Column(name = "engine_code")
     private String engineCode;
@@ -43,38 +45,56 @@ public class VehicleTechnicalDetails {
     @Column(name = "torque")
     private String torque;
 
-    @Column(name = "fuel_type")
-    private String fuelType;
+    @OneToOne
+    @JoinColumn(name = "fuel_type", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_vehicles_details_technically_vehicles_fuel_type"))
+    private FuelType fuelType;
 
-    @Column(name = "fuel_type_2")
-    private String fuelTypeE;
+    @OneToOne
+    @JoinColumn(name = "fuel_type_2", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_vehicles_details_technically_vehicles_fuel_type_2"))
+    private FuelType2 fuelType2;
 
-    @Column(name = "drive_type")
-    private String driveType;
+    @OneToOne
+    @JoinColumn(name = "drive_type", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_vehicles_details_technically_vehicles_drive_type"))
+    private DriveType driveType;
 
-    @Column(name = "gear_type")
-    private String gearType;
+    @OneToOne
+    @JoinColumn(name = "gear_type", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_vehicles_details_technically_vehicles_gear_type"))
+    private GearType gearType;
 
     @Column(name = "gear_amount")
     private String gearAmount;
 
-    @Column(name = "emission_class")
-    private String emissionClass;
+    @OneToOne
+    @JoinColumn(name = "emission_class", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_vehicles_details_technically_vehicles_emission_class"))
+    private EmissionClass emissionClass;
 
-    @Column(name = "position_engine")
-    private String positionEngine;
+    @OneToOne
+    @JoinColumn(name = "position_engine", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_vehicles_details_technically_vehicles_position_engine"))
+    private PositionEngine positionEngine;
 
-    @Column(name = "exhaust_gas_cleaning")
-    private String exhaustGasCleaning;
+    @OneToOne
+    @JoinColumn(name = "exhaust_gas_cleaning", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_vehicles_details_technically_vehicles_exhaust_gas_cleaning"))
+    private ExhaustGasCleaning exhaustGasCleaning;
 
     @Column(name = "amount_cylinders")
     private String amountCylinders;
 
-    @Column(name = "mixture_preparation")
-    private String mixturePreparation;
+    @OneToOne
+    @JoinColumn(name = "mixture_preparation", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_vehicles_details_technically_vehicles_mixture_preparation"))
+    private MixturePreparation mixturePreparation;
 
-    @Column(name = "engine_loading")
-    private String engineLoading;
+    @OneToOne
+    @JoinColumn(name = "engine_loading", referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "FK_vehicles_details_technically_vehicles_engine_loading"))
+    private EngineLoading engineLoading;
 
     @Column(name = "amount_valves")
     private String amountValves;
@@ -87,7 +107,6 @@ public class VehicleTechnicalDetails {
 
     @Column(name = "max_torque_rpm")
     private String maxTorqueRpm;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vehicle_id", referencedColumnName = "id",
             foreignKey = @ForeignKey(name = "FK_vehicles_details_technically_vehicles"))
@@ -95,4 +114,63 @@ public class VehicleTechnicalDetails {
     @ToString.Exclude
     private Vehicle vehicle;
 
+    public String getDriveType() {
+        if (driveType != null)
+            return driveType.getNameDe();
+        else return null;
+    }
+
+    public String getEngineType() {
+        if (engineType != null)
+            return engineType.getNameDe();
+        else return null;
+    }
+
+    public String getFuelType() {
+        if (fuelType != null)
+            return fuelType.getNameDe();
+        else return null;
+    }
+
+    public String getFuelType2() {
+        if (fuelType2 != null)
+            return fuelType2.getNameDe();
+        else return null;
+    }
+
+    public String getGearType() {
+        if (gearType != null)
+            return gearType.getNameDe();
+        else return null;
+    }
+
+    public String getEmissionClass() {
+        if (emissionClass != null)
+            return emissionClass.getNameDe();
+        else return null;
+    }
+
+    public String getPositionEngine() {
+        if (positionEngine != null)
+            return positionEngine.getNameDe();
+        else return null;
+    }
+
+    public String getExhaustGasCleaning() {
+        if (exhaustGasCleaning != null)
+            return exhaustGasCleaning.getNameDe();
+        else return null;
+    }
+
+    public String getMixturePreparation() {
+        if (mixturePreparation != null)
+            return mixturePreparation.getNameDe();
+        else return null;
+    }
+
+    public String getEngineLoading() {
+        if (engineLoading != null)
+            return engineLoading.getNameDe();
+        else return null;
+    }
 }
