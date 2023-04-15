@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "vehicles_exhaust_gas_cleaning")
 @AllArgsConstructor
 @NoArgsConstructor
-public class ExhaustGasCleaning {
+public class ExhaustGasCleaning implements LangModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +26,14 @@ public class ExhaustGasCleaning {
     @OneToOne(mappedBy = "exhaustGasCleaning")
     @JsonIgnore
     private VehicleTechnicalDetails vehicleTechnicalDetails;
+
+    @Override
+    public String getNameEn() {
+        return null;
+    }
+
+    @Override
+    public String getNameFr() {
+        return null;
+    }
 }

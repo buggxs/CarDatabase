@@ -43,8 +43,10 @@ public class VehicleService {
         return vehicleRepository.getAllVehiclesByHsnTsn(hsnKey, tsnKey, pageRequest);
     }
 
-    public Vehicle getVehicleById(Long id) {
-        return vehicleRepository.findById(id).orElseThrow(() -> new ApiRequestException("No car with this id."));
+    public Vehicle getVehicleById(Long id, String lang) {
+        Vehicle vehicle = vehicleRepository.findById(id).orElseThrow(() -> new ApiRequestException("No car with this id."));
+        vehicle.setLang(lang);
+        return vehicle;
     }
 
     public Page<VehicleShortDetailed> getAllVehiclesByName(Optional<String> name, Optional<Integer> page) {

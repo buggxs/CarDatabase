@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "vehicles_mixture_preparation")
 @AllArgsConstructor
 @NoArgsConstructor
-public class MixturePreparation {
+public class MixturePreparation implements LangModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +26,14 @@ public class MixturePreparation {
     @OneToOne(mappedBy = "mixturePreparation")
     @JsonIgnore
     private VehicleTechnicalDetails vehicleTechnicalDetails;
+
+    @Override
+    public String getNameEn() {
+        return null;
+    }
+
+    @Override
+    public String getNameFr() {
+        return null;
+    }
 }

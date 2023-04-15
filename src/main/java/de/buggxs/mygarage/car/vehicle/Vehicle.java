@@ -49,6 +49,9 @@ public class Vehicle {
     @JsonManagedReference
     private Set<VehicleTechnicalDetails> vehicleTechnicalDetails;
 
+    @JsonIgnore
+    private String lang;
+
     public Vehicle(String name, String model, String type, String url, ModelSeriesGeneration modelSeriesGeneration, Set<VehicleDetails> vehicleDetails, Set<VehicleTechnicalDetails> vehicleTechnicalDetails) {
         this.name = name;
         this.model = model;

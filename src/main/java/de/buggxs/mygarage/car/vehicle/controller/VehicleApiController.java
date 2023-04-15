@@ -48,8 +48,10 @@ public class VehicleApiController {
 
 
     @GetMapping(value = "/{id}")
-    public Vehicle getVehicleById(@PathVariable("id") Long id) {
-        return vehicleService.getVehicleById(id);
+    public Vehicle getVehicleById(@PathVariable("id") Long id,
+                                  @RequestParam(value = "lang", required = false) Optional<String> language) {
+
+        return vehicleService.getVehicleById(id, language.orElse("de"));
     }
 
     @GetMapping(value = "/data/update")

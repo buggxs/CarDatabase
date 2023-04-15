@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "vehicles_gear_type")
 @AllArgsConstructor
 @NoArgsConstructor
-public class GearType {
+public class GearType implements LangModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +26,14 @@ public class GearType {
     @OneToOne(mappedBy = "gearType")
     @JsonIgnore
     private VehicleTechnicalDetails vehicleTechnicalDetails;
+
+    @Override
+    public String getNameEn() {
+        return null;
+    }
+
+    @Override
+    public String getNameFr() {
+        return null;
+    }
 }
