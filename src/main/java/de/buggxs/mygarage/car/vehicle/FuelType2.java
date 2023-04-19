@@ -19,21 +19,16 @@ public class FuelType2 implements LangModel {
     @Column(name = "id")
     private Long id;
 
-
     @Column(name = "name_de")
     private String nameDe;
+
+    @Column(name = "name_en")
+    private String nameEn;
+
+    @Column(name = "name_fr")
+    private String nameFr;
 
     @OneToOne(mappedBy = "fuelType2")
     @JsonIgnore
     private VehicleTechnicalDetails vehicleTechnicalDetails;
-
-    @Override
-    public String getNameEn() {
-        return null;
-    }
-
-    @Override
-    public String getNameFr() {
-        return null;
-    }
 }

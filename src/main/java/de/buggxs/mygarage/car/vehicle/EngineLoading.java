@@ -23,17 +23,14 @@ public class EngineLoading implements LangModel {
     @Column(name = "name_de")
     private String nameDe;
 
+    @Column(name = "name_en")
+    private String nameEn;
+
+    @Column(name = "name_fr")
+    private String nameFr;
+
     @OneToOne(mappedBy = "engineLoading")
     @JsonIgnore
     private VehicleTechnicalDetails vehicleTechnicalDetails;
 
-    @Override
-    public String getNameEn() {
-        return null;
-    }
-
-    @Override
-    public String getNameFr() {
-        return null;
-    }
 }
