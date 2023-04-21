@@ -59,10 +59,10 @@ public class VehicleRepositoryEmbeddedTest {
             CONST_MODEL_SERIES_GEN4,
     };
 
-    final Vehicle CONST_VEHICLE1 = new Vehicle(11L, "Arteon  (3H)", "", "VW Arteon 1.4 eHybrid OPF Elegance DSG (ab 11/20)", "", CONST_MODEL_SERIES_GENERATION[0].getId(), CONST_MODEL_SERIES_GENERATION[0], null, null);
-    final Vehicle CONST_VEHICLE2 = new Vehicle(12L, "Golf  (CD)", "", "VW Golf 1.0 TSI ACTIVE (01/21 - 08/21)", "", CONST_MODEL_SERIES_GENERATION[1].getId(), CONST_MODEL_SERIES_GENERATION[1], null, null);
-    final Vehicle CONST_VEHICLE3 = new Vehicle(13L, "Tiguan  (5N)", "", "VW Tiguan 1.4 TSI BMT Cityscape (05/15 - 04/16)", "", CONST_MODEL_SERIES_GENERATION[2].getId(), CONST_MODEL_SERIES_GENERATION[2], null, null);
-    final Vehicle CONST_VEHICLE4 = new Vehicle(14L, "SL-Klasse  (W113)", "", "Mercedes 230 SL Automatik (07/63 - 01/67)", "", CONST_MODEL_SERIES_GENERATION[3].getId(), CONST_MODEL_SERIES_GENERATION[3], null, null);
+    final Vehicle CONST_VEHICLE1 = new Vehicle(11L, "Arteon  (3H)", "", "VW Arteon 1.4 eHybrid OPF Elegance DSG (ab 11/20)", "", CONST_MODEL_SERIES_GENERATION[0].getId(), CONST_MODEL_SERIES_GENERATION[0], null, null, "de");
+    final Vehicle CONST_VEHICLE2 = new Vehicle(12L, "Golf  (CD)", "", "VW Golf 1.0 TSI ACTIVE (01/21 - 08/21)", "", CONST_MODEL_SERIES_GENERATION[1].getId(), CONST_MODEL_SERIES_GENERATION[1], null, null, "de");
+    final Vehicle CONST_VEHICLE3 = new Vehicle(13L, "Tiguan  (5N)", "", "VW Tiguan 1.4 TSI BMT Cityscape (05/15 - 04/16)", "", CONST_MODEL_SERIES_GENERATION[2].getId(), CONST_MODEL_SERIES_GENERATION[2], null, null, "de");
+    final Vehicle CONST_VEHICLE4 = new Vehicle(14L, "SL-Klasse  (W113)", "", "Mercedes 230 SL Automatik (07/63 - 01/67)", "", CONST_MODEL_SERIES_GENERATION[3].getId(), CONST_MODEL_SERIES_GENERATION[3], null, null, "de");
     final Vehicle[] CONST_VEHICLES = {
             CONST_VEHICLE1,
             CONST_VEHICLE2,

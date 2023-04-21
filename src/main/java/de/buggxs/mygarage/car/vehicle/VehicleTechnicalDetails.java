@@ -116,61 +116,70 @@ public class VehicleTechnicalDetails {
 
     public String getDriveType() {
         if (driveType != null)
-            return driveType.getNameDe();
+            return translateLanguage(driveType, vehicle.getLang());
         else return null;
     }
 
     public String getEngineType() {
         if (engineType != null)
-            return engineType.getNameDe();
+            return translateLanguage(engineType, vehicle.getLang());
         else return null;
     }
 
     public String getFuelType() {
         if (fuelType != null)
-            return fuelType.getNameDe();
+            return translateLanguage(fuelType, vehicle.getLang());
         else return null;
     }
 
     public String getFuelType2() {
         if (fuelType2 != null)
-            return fuelType2.getNameDe();
+            return translateLanguage(fuelType2, vehicle.getLang());
         else return null;
     }
 
     public String getGearType() {
         if (gearType != null)
-            return gearType.getNameDe();
+            return translateLanguage(gearType, vehicle.getLang());
         else return null;
     }
 
     public String getEmissionClass() {
         if (emissionClass != null)
-            return emissionClass.getNameDe();
+            return translateLanguage(emissionClass, vehicle.getLang());
         else return null;
     }
 
     public String getPositionEngine() {
         if (positionEngine != null)
-            return positionEngine.getNameDe();
+            return translateLanguage(positionEngine, vehicle.getLang());
         else return null;
     }
 
     public String getExhaustGasCleaning() {
         if (exhaustGasCleaning != null)
-            return exhaustGasCleaning.getNameDe();
+            return translateLanguage(exhaustGasCleaning, vehicle.getLang());
         else return null;
     }
 
     public String getMixturePreparation() {
         if (mixturePreparation != null)
-            return mixturePreparation.getNameDe();
+            return translateLanguage(mixturePreparation, vehicle.getLang());
         else return null;
     }
 
     public String getEngineLoading() {
         if (engineLoading != null)
-            return engineLoading.getNameDe();
+            return translateLanguage(engineLoading, vehicle.getLang());
         else return null;
+    }
+
+    private String translateLanguage(LangModel langModel, String lang) {
+
+        return switch (lang) {
+            case LangModel.ENGLISH -> langModel.getNameEn();
+            case LangModel.FRANCE -> langModel.getNameFr();
+            default -> langModel.getNameDe();
+        };
     }
 }

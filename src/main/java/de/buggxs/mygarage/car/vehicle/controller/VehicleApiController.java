@@ -1,5 +1,6 @@
 package de.buggxs.mygarage.car.vehicle.controller;
 
+import de.buggxs.mygarage.car.vehicle.LangModel;
 import de.buggxs.mygarage.car.vehicle.Vehicle;
 import de.buggxs.mygarage.car.vehicle.VehicleShortDetailed;
 import de.buggxs.mygarage.car.vehicle.service.VehicleService;
@@ -48,8 +49,10 @@ public class VehicleApiController {
 
 
     @GetMapping(value = "/{id}")
-    public Vehicle getVehicleById(@PathVariable("id") Long id) {
-        return vehicleService.getVehicleById(id);
+    public Vehicle getVehicleById(@PathVariable("id") Long id,
+                                  @RequestParam(value = "lang", required = false) Optional<String> language) {
+
+        return vehicleService.getVehicleById(id, language.orElse(LangModel.GERMAN));
     }
 
     @GetMapping(value = "/data/update")
