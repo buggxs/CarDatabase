@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# production
+src/main/resources/application-prod.properties
+
 ### STS ###
 .apt_generated
 .classpath
@@ -37,19 +40,3 @@ build/
 
 # testing
 **/src/frontend/coverage
-
-# production
-**/src/frontend/build/
-**/src/frontend/node/
-**/src/resources/application-prod.properties
-
-# misc
-!**/src/frontend/.DS_Store
-!**/src/frontend/.env.local
-!**/src/frontend/.env.development.local
-!**/src/frontend/.env.test.local
-!**/src/frontend/.env.production.local
-
-!**/src/frontend/npm-debug.log*
-!**/src/frontend/yarn-debug.log*
-!**/src/frontend/yarn-error.log*
