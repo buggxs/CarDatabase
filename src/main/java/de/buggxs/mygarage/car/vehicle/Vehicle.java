@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import de.buggxs.mygarage.car.brand.ModelSeriesGeneration;
+import de.buggxs.mygarage.car.vehicle.mapper.VehicleShortDetailed;
 import lombok.*;
 
 import javax.persistence.*;

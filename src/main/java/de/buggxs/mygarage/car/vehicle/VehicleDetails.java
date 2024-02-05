@@ -2,6 +2,7 @@ package de.buggxs.mygarage.car.vehicle;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.buggxs.mygarage.misc.MyDateAttributeConverter;
 import lombok.*;
 
 import javax.persistence.*;

@@ -9,7 +9,11 @@ To get started with this API, you will need to clone this repository onto your l
 Java and Maven installed. Once you have cloned the repository and installed the necessary dependencies, you can run the
 application using the following command:
 
-`mvn spring-boot:run`
+1. Clone this repository to your local machine
+2. Setup a MySQL database on your local machine
+3. For development use the `application-dev.properties`
+    4. Add you database information into the `application-dev.properties`
+5. Use Java corretto-17 and run the application. All the database tables should be set up
 
 This will start the application on `http://localhost:8080`.
 

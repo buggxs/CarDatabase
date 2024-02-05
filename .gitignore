@@ -41,6 +41,7 @@ build/
 # production
 **/src/frontend/build/
 **/src/frontend/node/
+**/src/resources/application-prod.properties
 
 # misc
 !**/src/frontend/.DS_Store

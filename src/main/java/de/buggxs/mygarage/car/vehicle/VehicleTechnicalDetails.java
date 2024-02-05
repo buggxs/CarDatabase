@@ -2,6 +2,7 @@ package de.buggxs.mygarage.car.vehicle;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.buggxs.mygarage.common.Translate;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @Table(name = "vehicles_details_technically")
 @AllArgsConstructor
 @NoArgsConstructor
-public class VehicleTechnicalDetails {
+public class VehicleTechnicalDetails extends Translate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -174,12 +175,4 @@ public class VehicleTechnicalDetails {
         else return null;
     }
 
-    private String translateLanguage(LangModel langModel, String lang) {
-
-        return switch (lang) {
-            case LangModel.ENGLISH -> langModel.getNameEn();
-            case LangModel.FRANCE -> langModel.getNameFr();
-            default -> langModel.getNameDe();
-        };
-    }
 }

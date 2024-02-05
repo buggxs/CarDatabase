@@ -1,4 +1,4 @@
-package de.buggxs.mygarage.car.vehicle;
+package de.buggxs.mygarage.car.vehicle.mapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

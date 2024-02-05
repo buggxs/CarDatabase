@@ -35,7 +35,7 @@ public class ModelSeriesGeneration {
     private Long modelSeriesId;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "model_series_id", nullable = false)
+    @JoinColumn(name = "model_series_id", nullable = false, foreignKey = @ForeignKey(name = "FK_model_series_model_series_generation"))
     @JsonBackReference
     private ModelSeries modelSeries;
 

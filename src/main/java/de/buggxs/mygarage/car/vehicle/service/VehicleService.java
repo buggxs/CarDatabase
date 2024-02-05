@@ -2,8 +2,8 @@ package de.buggxs.mygarage.car.vehicle.service;
 
 import de.buggxs.mygarage.car.vehicle.Vehicle;
 import de.buggxs.mygarage.car.vehicle.VehicleDetails;
-import de.buggxs.mygarage.car.vehicle.VehicleShortDetailed;
 import de.buggxs.mygarage.car.vehicle.db.VehicleRepository;
+import de.buggxs.mygarage.car.vehicle.mapper.VehicleShortDetailed;
 import de.buggxs.mygarage.exception.ApiRequestException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

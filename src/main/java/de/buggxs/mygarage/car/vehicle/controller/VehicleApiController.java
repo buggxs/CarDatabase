@@ -1,9 +1,9 @@
 package de.buggxs.mygarage.car.vehicle.controller;
 
-import de.buggxs.mygarage.car.vehicle.LangModel;
 import de.buggxs.mygarage.car.vehicle.Vehicle;
-import de.buggxs.mygarage.car.vehicle.VehicleShortDetailed;
+import de.buggxs.mygarage.car.vehicle.mapper.VehicleShortDetailed;
 import de.buggxs.mygarage.car.vehicle.service.VehicleService;
+import de.buggxs.mygarage.common.LangModel;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

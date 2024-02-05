@@ -1,6 +1,7 @@
 package de.buggxs.mygarage.car.vehicle;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.buggxs.mygarage.common.LangModel;
 import lombok.*;
 
 import javax.persistence.*;

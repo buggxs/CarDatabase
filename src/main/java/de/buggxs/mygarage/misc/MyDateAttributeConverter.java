@@ -1,4 +1,4 @@
-package de.buggxs.mygarage.car.vehicle;
+package de.buggxs.mygarage.misc;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

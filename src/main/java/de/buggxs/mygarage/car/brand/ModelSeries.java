@@ -36,7 +36,7 @@ public class ModelSeries {
     private Long brandId;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "brand_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "brand_id", nullable = false, insertable = false, updatable = false, foreignKey = @ForeignKey(name = "FK_model_brand"))
     @JsonBackReference
     private Brand brand;
 
@@ -45,10 +45,4 @@ public class ModelSeries {
     @ToString.Exclude
     @JsonManagedReference
     private Set<ModelSeriesGeneration> modelSeriesGenerationSet;
-
-    public ModelSeries(String name, String url, Brand brand) {
-        this.name = name;
-        this.url = url;
-        this.brand = brand;
-    }
 }
